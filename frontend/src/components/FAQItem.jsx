@@ -1,0 +1,125 @@
+import React, { useState } from "react";
+
+/**
+ * FAQItem - single accordion item
+ * Props:
+ *  - id: unique id
+ *  - question: string
+ *  - answer: string (or React node)
+ *  - isOpen: boolean
+ *  - onToggle: () => void
+ */
+function FAQItem({ id, question, answer, isOpen, onToggle }) {
+  return (
+    <div className="w-full">                                          
+      <button
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-controls={`faq-panel-${id}`}
+        className="
+          flex items-center justify-between
+          w-full text-left
+          bg-white
+          px-5 py-4
+          rounded-xl
+          border border-gray-200
+          
+          hover:shadow-md
+          transition
+        "
+      >
+        <span className="text-gray-800 font-medium">{question}</span>
+
+        <svg
+          className={`w-5 h-5 text-gray-500 transform transition-transform duration-200 ${isOpen ? "rotate-180" : "rotate-0"}`}
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden
+        >
+          <path d="M5 8l5 5 5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      {/* Animated answer panel */}
+      <div
+        id={`faq-panel-${id}`}
+        role="region"
+        aria-labelledby={`faq-btn-${id}`}
+        className={`
+          mt-3 px-5
+          overflow-hidden
+          transition-all duration-300
+          ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}
+        `}
+      >
+        <div className="pb-4 text-sm text-gray-600">
+          {answer}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * FAQs - main section component
+ * - uses a list of {question, answer} and renders accordion with single-open behavior
+ */
+export default function FAQs() {
+  const faqs = [
+    {
+      q: "What is the AI Content Generator?",
+      a: "Our AI Content Generator is an advanced tool that helps you quickly create high-quality, original content for various needs including articles, scripts, and social posts.",
+    },
+    {
+      q: "How does the AI ensure originality?",
+      a: "The model generates content based on patterns and training data, and we additionally provide options to paraphrase, cite sources, or run plagiarism checks before publishing.",
+    },
+    {
+      q: "What languages are supported?",
+      a: "We support multiple languages. Coverage may vary by feature — check settings to see available languages for generation and voice features.",
+    },
+    {
+      q: "Can I edit the generated content?",
+      a: "Yes. Generated content is fully editable; you retain complete control to refine, restructure, and publish as you prefer.",
+    },
+    {
+      q: "Is there a free trial available?",
+      a: "We provide a limited free trial with basic features. Paid plans unlock advanced functionality and higher usage limits.",
+    },
+    {
+      q: "How does the pricing work?",
+      a: "Pricing is tiered based on usage, feature set, and team seats. Visit the pricing page for the latest plans and comparisons.",
+    },
+  ];
+
+  const [openIndex, setOpenIndex] = useState(0); // default first open; set to null if none
+
+  const toggle = (index) => {
+    setOpenIndex((prev) => (prev === index ? null : index));
+  };
+
+  return (
+    <section className="max-w-4xl mx-auto px-6 py-16">
+      <div className="bg-white rounded-3xl p-10 ">
+        <header className="text-center mb-8">
+          <h2 className="text-3xl font-extrabold text-gray-900">FREQUENTLY ASKED QUESTIONS</h2>
+          <p className="text-gray-500 mt-2">Find quick answers to the most common questions</p>
+        </header>
+
+        <div className="space-y-4">
+          {faqs.map((f, i) => (
+            <FAQItem
+              key={i}
+              id={i}
+              question={f.q}
+              answer={f.a}
+              isOpen={openIndex === i}
+              onToggle={() => toggle(i)}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
