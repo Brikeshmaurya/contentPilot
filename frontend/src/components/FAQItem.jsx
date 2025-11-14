@@ -67,31 +67,28 @@ function FAQItem({ id, question, answer, isOpen, onToggle }) {
  */
 export default function FAQs() {
   const faqs = [
-    {
-      q: "What is the AI Content Generator?",
-      a: "Our AI Content Generator is an advanced tool that helps you quickly create high-quality, original content for various needs including articles, scripts, and social posts.",
-    },
-    {
-      q: "How does the AI ensure originality?",
-      a: "The model generates content based on patterns and training data, and we additionally provide options to paraphrase, cite sources, or run plagiarism checks before publishing.",
-    },
-    {
-      q: "What languages are supported?",
-      a: "We support multiple languages. Coverage may vary by feature — check settings to see available languages for generation and voice features.",
-    },
-    {
-      q: "Can I edit the generated content?",
-      a: "Yes. Generated content is fully editable; you retain complete control to refine, restructure, and publish as you prefer.",
-    },
-    {
-      q: "Is there a free trial available?",
-      a: "We provide a limited free trial with basic features. Paid plans unlock advanced functionality and higher usage limits.",
-    },
-    {
-      q: "How does the pricing work?",
-      a: "Pricing is tiered based on usage, feature set, and team seats. Visit the pricing page for the latest plans and comparisons.",
-    },
-  ];
+  {
+    q: "What problem does this platform solve?",
+    a: "It automates high-volume content creation for media, education, advertising, and public outreach, removing delays, manual workload, and content bottlenecks.",
+  },
+  {
+    q: "What types of content can it generate?",
+    a: "The platform generates scripts, articles, blogs, social media posts, educational material, posters, and ad copy—all in one place.",
+  },
+  {
+    q: "Does it support multiple languages?",
+    a: "Yes. It can create multilingual content with cultural nuance, making communication accessible to diverse audiences.",
+  },
+  {
+    q: "Do I need technical or design skills?",
+    a: "No. The system is built for ease of use. Anyone can generate ready-to-publish content without writing or design expertise.",
+  },
+  {
+    q: "How does it ensure content relevance?",
+    a: "The platform adapts outputs based on audience type, tone, and trending topics, ensuring context-aware and up-to-date content every time.",
+  },
+];
+
 
   const [openIndex, setOpenIndex] = useState(0); // default first open; set to null if none
 
