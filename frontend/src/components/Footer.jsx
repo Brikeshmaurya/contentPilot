@@ -91,7 +91,7 @@ export default function FooterSection() {
 
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between text-gray-400 text-sm">
-          <p>© 2023 Content Pilot. All rights reserved.</p>
+          <p>© 2025 Content Pilot. All rights reserved.</p>
 
           <div className="flex gap-6 mt-4 md:mt-0">
             <a href="#" className="hover:underline">Privacy Policy</a>
